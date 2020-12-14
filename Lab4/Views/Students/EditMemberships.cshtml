@@ -1,0 +1,58 @@
+﻿@model Lab4.Models.Student
+
+@{
+    ViewData["Title"] = "EditMemberships";
+    Layout = "_Layout";
+
+}
+
+<h1>Edit</h1>
+<a asp-action="Index">Back to List</a>
+<div>
+    <h4>Student</h4>
+    <hr />
+    <div class="row">
+        <div class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FullName)
+        </div>
+        <div class="col-sm-10">
+            @Html.DisplayFor(model => model.FullName)
+        </div>
+    </div>
+</div>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <table style="color:#fff">
+            <tr>
+                <td>
+                    Alpha
+                </td>
+                <td>
+                    <a href="#">Ungister</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Beta
+                </td>
+                <td>
+                    <a href="#">Register</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Omega
+                </td>
+                <td>
+                    <a href="#">Register</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

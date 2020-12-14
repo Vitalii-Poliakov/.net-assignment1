@@ -1,0 +1,79 @@
+﻿@model Lab4.Models.ViewModels.CommunityViewModel
+
+@{
+    Layout = "_Layout";
+
+    ViewData["Title"] = "Index";
+}
+
+
+
+<h1 style="color:#fff">Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table style="color:#fff" class="table">
+    <thead>
+        <tr>
+            <th>
+                Title
+            </th>
+            <th>
+                Budget
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Communities)
+        {
+            string selectedRow = "";
+            if (item.ID == ViewData["CommunityID"]?.ToString())
+            {
+                selectedRow = "success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Budget)
+                </td>
+                <td>
+                    <a asp-action="Index" asp-route-id="@item.ID">Select</a> |
+                    <a asp-controller="AddImages" asp-action="Index" asp-route-id="@item.ID">Ads</a> |
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model.CommunityMemberships != null)
+{
+<h3 style="color:#fff">
+    Members of the community
+</h3>
+    <table style="color:#fff" class="table">
+        <tr>
+            @if (Model.CommunityMemberships.Count() > 0)
+            {
+                <th>Name</th>
+            }
+            else
+            {
+                <th>No membership record exist</th>
+            }
+        </tr>
+        @foreach (var item in Model.CommunityMemberships)
+        {
+            <tr>
+                <td>
+                    @item.Student.FullName
+                </td>
+            </tr>
+        }
+    </table>
+}
